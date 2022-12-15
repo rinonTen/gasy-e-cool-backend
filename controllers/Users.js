@@ -12,7 +12,7 @@ export const getUsers = async(_req, res) => {
         console.log(error);
     }
 }
- 
+
 export const Register = async(req, res) => {
     const { first_name, last_name, email, password } = req.body;
  
@@ -39,7 +39,21 @@ export const Register = async(req, res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
+
+export const getCurrentUser = async(req, res) => {
+    const { params } = req;
+    try {
+        const user = await Users.findOne({
+            where: {
+                email: params.email
+            }
+        });
+      return  res.json(user);
+    } catch (error) {
+        res.json(error);
+    }
+};
  
 export const Login = async(req, res) => {
     try {
@@ -82,7 +96,7 @@ export const Login = async(req, res) => {
         console.log(error);
     }
 }
- 
+
 export const Logout = async(req, res) => {
     const refreshToken = req.cookies.refreshToken;
     if(!refreshToken) return res.sendStatus(204);
