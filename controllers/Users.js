@@ -1,4 +1,4 @@
-import Users from "../models/UserModel.js";
+import Users from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
  
@@ -37,7 +37,7 @@ export const Register = async(req, res) => {
             res.json({ msg: "Registration Successful", data: users });
         }
     } catch (error) {
-        console.log(error);
+        return res.json(error);
     }
 };
 
@@ -93,7 +93,7 @@ export const Login = async(req, res) => {
 
         res.json({ accessToken });
     } catch (error) {
-        console.log(error);
+        res.json(error);
     }
 }
 

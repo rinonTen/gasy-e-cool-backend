@@ -12,6 +12,6 @@ router.post('/login', Login);
 router.get('/token', refreshToken);
 router.delete('/logout', Logout);
 router.get('/users/:email', getCurrentUser)
-router.post('products', AddProduct)
+router.post('/products', AddProduct)
  
 export default router;

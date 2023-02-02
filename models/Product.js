@@ -29,7 +29,7 @@ const Products = db.define('products', {
         type: DataTypes.STRING
     },
     video_url: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING | null
     },
     price: {
         type: DataTypes.STRING
