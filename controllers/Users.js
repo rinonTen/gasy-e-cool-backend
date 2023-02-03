@@ -98,20 +98,16 @@ export const Login = async(req, res) => {
 }
 
 export const Logout = async(req, res) => {
-    const refreshToken = req.cookies.refreshToken;
-    if(!refreshToken) return res.sendStatus(204);
-    const user = await Users.findAll({
-        where: {
-            refresh_token: refreshToken
-        }
-    });
-    if(!user[0]) return res.sendStatus(204);
-    const userId = user[0].id;
-    await Users.update({ refresh_token: null }, {
-        where: {
-            id: userId
-        }
-    });
-    res.clearCookie('refreshToken');
-    return res.sendStatus(200);
+    try {
+        await Users.update({ refresh_token: null }, {
+            where: { email: req.body.email }
+        });
+        res.clearCookie('refreshToken');
+        return res.sendStatus(200);   
+    } catch (error) {
+        res.status(500).json({
+            status: "error",
+            message: error.message,
+        });
+    }
 }
