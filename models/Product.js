@@ -33,6 +33,9 @@ const Products = db.define('products', {
     },
     price: {
         type: DataTypes.STRING
+    },
+    is_favourited: {
+        type: DataTypes.BOOLEAN
     }
 }, {
     freezeTableName:true

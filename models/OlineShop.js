@@ -27,6 +27,9 @@ const OnlineShops = db.define('online_shops', {
     },
     twitter_url: {
         type: DataTypes.STRING | null
+    },
+    is_favourited: {
+        type: DataTypes.BOOLEAN
     }
 }, {
     freezeTableName:true

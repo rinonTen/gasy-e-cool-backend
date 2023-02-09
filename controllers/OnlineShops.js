@@ -64,4 +64,18 @@ export const getOnlineShops = async(_req, res) => {
             message: `An error has occurred when fetching data. ${error.message}`
         })
     };
+};
+
+export const UpdateShop = async(req, res) => {
+    try {
+        await OnlineShops.update({ is_favourited: req.is_favourited }, {
+            where: { id: req.body.id }
+        });
+        return res.sendStatus(200);   
+    } catch (error) {
+        res.status(500).json({
+            status: "error",
+            message: error.message,
+        });
+    }
 }
