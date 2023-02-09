@@ -3,6 +3,7 @@ import { getUsers, Register, Login, Logout, getCurrentUser } from "../controller
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 import { AddProduct, deleteProduct, getProducts } from "../controllers/Products.js";
+import { AddOnlineShop, getOnlineShops } from "../controllers/OnlineShops.js";
  
 const router = express.Router();
  
@@ -15,5 +16,7 @@ router.get('/users/:email', getCurrentUser);
 router.post('/products', AddProduct);
 router.delete('/products/:id', deleteProduct);
 router.get('/products/all', getProducts);
+router.post('/online-shop', AddOnlineShop)
+router.get('/online-shop/all', getOnlineShops)
 
 export default router;

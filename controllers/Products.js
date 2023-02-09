@@ -48,8 +48,11 @@ export const AddProduct = async(req, res) => {
         });
         res.json({ msg: "Product added successfully", data: products });
     } catch (error) {
-        res.json({ msg: "There was an issue when creating a product", data: null });
-        console.log(error);
+        res.status(500).json({
+            status: "error",
+            message: `There was an issue when adding a product. ${error.message}`,
+            data: null
+        });
     };
 };
 
@@ -60,7 +63,10 @@ export const getProducts = async(_req, res) => {
         });
         res.json(products);
     } catch (error) {
-        console.log(error);
+        res.status(500).json({
+            status: 'error',
+            message: `An error has occurred when fetching data. ${error.message}`
+        })
     };
 }
 
