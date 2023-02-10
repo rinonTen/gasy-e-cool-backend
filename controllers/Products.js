@@ -110,7 +110,10 @@ export const UpdateProduct = async(req, res) => {
         await Products.update(product, {
             where: { id: req.params.id }
         });
-        return res.sendStatus(200);   
+        const products = await Products.findAll({
+            attributes: productAttributes
+        });
+        res.status(200).json(products);   
     } catch (error) {
         res.status(500).json({
             status: "error",
