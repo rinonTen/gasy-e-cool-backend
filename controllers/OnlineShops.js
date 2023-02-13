@@ -11,7 +11,8 @@ const onlineShopsAttributes = [
     'facebook_link',
     'twitter_link',
     'createdAt',
-    'updatedAt'
+    'updatedAt',
+    'is_favourited'
 ]
 
 export const AddOnlineShop = async(req, res) => {
@@ -42,7 +43,7 @@ export const AddOnlineShop = async(req, res) => {
         const onlineShops = await OnlineShops.findAll({
             attributes: onlineShopsAttributes
         });
-        res.json({ msg: "Product added successfully", data: onlineShops });
+        res.json({ msg: "Shop added successfully", data: onlineShops });
     } catch (error) {
         res.status(500).json({
             status: "error",
@@ -66,18 +67,33 @@ export const getOnlineShops = async(_req, res) => {
     };
 };
 
-export const UpdateShop = async(req, res) => {
+// This should work for any update made on each shop
+export const updateShop = async(req, res) => {
     try {
-        await OnlineShops.update({ is_favourited: req.is_favourited }, {
-            where: { id: req.body.id }
+        const shopToUpdate = await OnlineShops.findOne({ where: { id: req.params.id }});
+        const shop = shopToUpdate.dataValues;
+        // Update any keys/items that match the client's requests
+        for (const shopKey in shop) {
+            for (const reqKey in req.body) {
+                if(shopKey === reqKey) {
+                    shop[`${shopKey}`] = req.body[`${reqKey}`]
+                }
+            };
+        };
+
+        await OnlineShops.update(shop, {
+            where: { id: req.params.id }
         });
-        return res.sendStatus(200);   
+        const shops = await OnlineShops.findAll({
+            attributes: onlineShopsAttributes
+        });
+        res.status(200).json(shops);   
     } catch (error) {
         res.status(500).json({
             status: "error",
             message: error.message,
         });
-    }
+    };
 };
 
 export const deleteShop = async(req, res) => {

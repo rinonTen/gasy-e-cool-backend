@@ -22,10 +22,10 @@ const OnlineShops = db.define('online_shops', {
     image_url: {
         type: DataTypes.STRING
     },
-    facebook_url: {
+    facebook_link: {
         type: DataTypes.STRING
     },
-    twitter_url: {
+    twitter_link: {
         type: DataTypes.STRING | null
     },
     is_favourited: {
