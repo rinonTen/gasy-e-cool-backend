@@ -78,4 +78,24 @@ export const UpdateShop = async(req, res) => {
             message: error.message,
         });
     }
-}
+};
+
+export const deleteShop = async(req, res) => {
+    try {
+        const result = await OnlineShops.destroy({
+            where: { id: req.params.id },
+            force: true
+        });
+        if(result === 0) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'A shop with that id is not found'
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            status: "error",
+            message: error.message,
+        });
+    };
+};
