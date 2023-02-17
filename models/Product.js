@@ -36,6 +36,9 @@ const Products = db.define('products', {
     },
     is_favourited: {
         type: DataTypes.BOOLEAN
+    },
+    is_updated: {
+        type: DataTypes.BOOLEAN
     }
 }, {
     freezeTableName:true

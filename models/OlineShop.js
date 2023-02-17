@@ -30,6 +30,9 @@ const OnlineShops = db.define('online_shops', {
     },
     is_favourited: {
         type: DataTypes.BOOLEAN
+    },
+    is_updated: {
+        type: DataTypes.BOOLEAN
     }
 }, {
     freezeTableName:true

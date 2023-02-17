@@ -3,7 +3,8 @@ import { getUsers, Register, Login, Logout, getCurrentUser } from "../controller
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 import { AddProduct, deleteProduct, getProducts, UpdateProduct } from "../controllers/Products.js";
-import { AddOnlineShop, deleteShop, getOnlineShops, updateShop } from "../controllers/OnlineShops.js";
+import { AddOnlineShop, deleteShop, filterShops, getOnlineShops, updateShop } from "../controllers/OnlineShops.js";
+import { getShopCategories } from "../controllers/ShopCategories.js";
  
 const router = express.Router();
  
@@ -21,5 +22,7 @@ router.post('/online-shops', AddOnlineShop);
 router.get('/online-shops/all', getOnlineShops);
 router.put('/online-shops/:id', updateShop);
 router.delete('/online-shops/:id', deleteShop);
+router.post('/online-shops/filters', filterShops);
+router.get('/online-shops/categories', getShopCategories);
 
 export default router;
