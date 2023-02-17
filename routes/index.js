@@ -2,7 +2,7 @@ import express from "express";
 import { getUsers, Register, Login, Logout, getCurrentUser } from "../controllers/Users.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
-import { AddProduct, deleteProduct, getProducts, UpdateProduct } from "../controllers/Products.js";
+import { AddProduct, deleteProduct, filterProducts, getProducts, UpdateProduct } from "../controllers/Products.js";
 import { AddOnlineShop, deleteShop, filterShops, getOnlineShops, updateShop } from "../controllers/OnlineShops.js";
 import { getShopCategories } from "../controllers/ShopCategories.js";
  
@@ -18,6 +18,7 @@ router.post('/products', AddProduct);
 router.put('/products/:id', UpdateProduct)
 router.delete('/products/:id', deleteProduct);
 router.get('/products/all', getProducts);
+router.post('/products/filters', filterProducts);
 router.post('/online-shops', AddOnlineShop);
 router.get('/online-shops/all', getOnlineShops);
 router.put('/online-shops/:id', updateShop);

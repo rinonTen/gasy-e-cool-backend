@@ -132,11 +132,11 @@ export const filterShops = async (req, res) => {
                         { description: { [Op.like]: `%${keywords}%` } }
                     ]
                 },
-                { is_favourited }
+                { is_updated }
             ],
             [Op.and]: [
                 {
-                    [Op.and]: [ { is_updated }, { category }]
+                    [Op.and]: [{ is_favourited }, { category }]
                 }
             ]
         };
@@ -196,7 +196,7 @@ export const filterShops = async (req, res) => {
                 },
                 { is_updated },
                 { is_favourited },
-                {category}
+                { category }
             ]
         };
     }
