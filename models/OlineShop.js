@@ -26,7 +26,8 @@ const OnlineShops = db.define('online_shops', {
         type: DataTypes.STRING
     },
     twitter_link: {
-        type: DataTypes.STRING | null
+        type: Sequelize.STRING,
+        allowNull: true
     },
     is_favourited: {
         type: DataTypes.BOOLEAN
